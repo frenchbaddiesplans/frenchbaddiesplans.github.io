@@ -22,7 +22,12 @@
 </head>
 <body>
 <div class="attente"><div><span>✦</span>Chargement du planning…</div></div>
-<iframe src="https://script.google.com/macros/s/AKfycbyJ9R8xICmKm2Lwb8GMQ-ESOOgmSDjRy15R1WPigD9-MViy7NsEsPIxo5DeTvgqF7JC/exec"
-        title="Prendre rendez-vous chez French Baddies Nails" allow="clipboard-write"></iframe>
+<iframe id="outil" title="Prendre rendez-vous chez French Baddies Nails" allow="clipboard-write"></iframe>
+<script>
+  // Adresse de l'outil Apps Script. Ne change que si un NOUVEAU déploiement est créé.
+  var OUTIL = 'https://script.google.com/macros/s/AKfycbyJ9R8xICmKm2Lwb8GMQ-ESOOgmSDjRy15R1WPigD9-MViy7NsEsPIxo5DeTvgqF7JC/exec';
+  // Transmet ?annuler=… (lien des e-mails) et ?admin=… (espace privé) à l'outil.
+  document.getElementById('outil').src = OUTIL + location.search;
+</script>
 </body>
 </html>
