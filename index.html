@@ -40,6 +40,8 @@
   // Ne change que si un NOUVEAU déploiement est créé (pense aussi à planning/index.html).
   var OUTIL = 'https://script.google.com/a/~/macros/s/AKfycbxsQ_4qSpHJUCa_axL7aI9C3ZBIr_dagr3PITUe8gEDmq5AQQqy6R-WM9RvpM1qd00/exec';
   // Transmet ?annuler=… (lien des e-mails) et ?admin=… (espace privé) à l'outil.
+  // Espace privé : titre d'onglet dédié
+  if (/[?&]admin=/.test(location.search)) document.title = "Administration'gle";
   if (MAINTENANCE) {
     document.getElementById('outil').remove();
     document.getElementById('attente').remove();
