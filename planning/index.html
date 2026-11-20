@@ -34,7 +34,7 @@
 <iframe id="outil" title="Mon planning" allow="clipboard-write"></iframe>
 <script>
   // Adresse de l'outil Apps Script (la même que dans ../index.html).
-  var OUTIL = 'https://script.google.com/macros/s/AKfycbxsQ_4qSpHJUCa_axL7aI9C3ZBIr_dagr3PITUe8gEDmq5AQQqy6R-WM9RvpM1qd00/exec';
+  var OUTIL = 'https://script.google.com/a/~/macros/s/AKfycbxsQ_4qSpHJUCa_axL7aI9C3ZBIr_dagr3PITUe8gEDmq5AQQqy6R-WM9RvpM1qd00/exec';
   var cle = (/[?&]admin=([A-Za-z0-9]+)/.exec(location.search) || [])[1] || '';
   try { if (cle) localStorage.setItem('cleAdmin', cle); else cle = localStorage.getItem('cleAdmin') || ''; } catch (e) {}
   if (cle) {
