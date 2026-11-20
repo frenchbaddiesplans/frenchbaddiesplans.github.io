@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon planning</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#ff0a5e">
+<!-- Application installable : pas de start_url dans le manifeste = l'appli s'ouvre sur l'adresse
+     au moment de l'installation (avec la clé privée), sur iPhone comme sur Android. -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Planning">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icone-192.png">
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(160deg,#fe7766 0%,#ff5a1a 30%,#ff0a5e 68%,#ff6601 100%)}
+  .attente,.aide{position:fixed;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#fff;font:600 16px/1.5 system-ui,sans-serif}
+  .attente span{display:inline-block;margin-right:8px;animation:tourne 1s linear infinite}
+  @keyframes tourne{to{transform:rotate(360deg)}}
+  .aide{display:none}
+  .aide div{max-width:420px;padding:28px 22px;border-radius:24px;background:rgba(255,255,255,.16);border:1.5px solid rgba(246,221,248,.7)}
+  .aide img{width:96px;height:96px;border-radius:24px;border:4px solid #fff;margin-bottom:12px}
+  .aide h1{margin:0 0 10px;font-size:24px;color:#f6ddf8}
+  iframe{position:fixed;top:env(safe-area-inset-top,0);left:0;width:100%;height:calc(100% - env(safe-area-inset-top,0px));border:0;background:transparent}
+</style>
+</head>
+<body>
+<div class="attente" id="attente"><div><span>✦</span>Chargement du planning…</div></div>
+<div class="aide" id="aide"><div><img src="icone-192.png" alt=""><h1>Mon planning</h1><p>Ouvre d'abord ton lien privé (celui que Maxim t'a envoyé), puis ajoute-le à ton écran d'accueil.</p></div></div>
+<iframe id="outil" title="Mon planning" allow="clipboard-write"></iframe>
+<script>
+  // Adresse de l'outil Apps Script (la même que dans ../index.html).
+  var OUTIL = 'https://script.google.com/macros/s/AKfycbxsQ_4qSpHJUCa_axL7aI9C3ZBIr_dagr3PITUe8gEDmq5AQQqy6R-WM9RvpM1qd00/exec';
+  var cle = (/[?&]admin=([A-Za-z0-9]+)/.exec(location.search) || [])[1] || '';
+  try { if (cle) localStorage.setItem('cleAdmin', cle); else cle = localStorage.getItem('cleAdmin') || ''; } catch (e) {}
+  if (cle) {
+    document.getElementById('outil').src = OUTIL + '?admin=' + cle;
+  } else {
+    document.getElementById('outil').remove();
+    document.getElementById('attente').remove();
+    document.getElementById('aide').style.display = 'grid';
+  }
+</script>
+</body>
+</html>
